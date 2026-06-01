@@ -8,4 +8,17 @@ def test_add_many():
     assert result.exit_code == 0
     assert result.output == '30\n'
 
+def test_add_many_verbose():
+    runner = CliRunner()
+    result = runner.invoke(add_many, ['10', '20', '-v'])
+    assert result.exit_code == 0
+    assert result.output == '10 + 20 = 30\n'
+
+def test_add_many_multiple():
+    runner = CliRunner()
+    result = runner.invoke(add_many, ['10', '20', '30', '-v'])
+    assert result.exit_code == 0
+    assert result.output == '10 + 20 + 30 = 60\n'
+
+    
 # to run: in CLI -> pytest tests
